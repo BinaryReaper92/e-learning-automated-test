@@ -1,10 +1,8 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -21,23 +19,8 @@ public class LoginPage {
     @CacheLookup
     public static WebElement buttonLogin;
 
+    @FindBy(className = "auth-wrapper__error ng-star-inserted")
+    @CacheLookup
+    public static WebElement errorLogin;
 
-    /*
-    public void setUserName(String username)
-    {
-        textEmail.clear();
-        textEmail.sendKeys(username);
-    }
-
-    public void setPassword(String password)
-    {
-        textPassword.clear();
-        textPassword.sendKeys(password);
-    }
-
-    public void clickLogin()
-    {
-
-        buttonLogin.click();
-    }*/
 }
