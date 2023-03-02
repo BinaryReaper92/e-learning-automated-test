@@ -5,7 +5,6 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class Log4j {
 
-    //Initialize Log4j instance
     private static Logger Log = Logger.getLogger(Log4j.class.getName());
 
     public static void log4jSetup(){

@@ -1,6 +1,14 @@
 {
   "admin": {
-    "email": "admin@attrecto.com",
-    "password": "Teszt123."
+    "email": "balint.gyozo+daa@attrecto.com",
+    "password": "Asdf1234"
+  },
+  "wrong": {
+    "email": "adminattrecto.com",
+    "password": "Teszt"
+  },
+  "notExist": {
+    "email": "adminn@attrecto.com",
+    "password": "Teszt123"
   }
 }

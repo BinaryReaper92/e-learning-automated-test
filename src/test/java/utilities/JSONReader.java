@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.LinkedTreeMap;
+import models.PageAddress;
 import models.UserModel;
 
 import java.io.FileNotFoundException;
@@ -44,6 +45,15 @@ public class JSONReader {
 
 
         return model;
+    }
+
+    public PageAddress getAddress(String url) {
+        String path = "//Properties//environments.json";
+        String address = ((LinkedTreeMap<?, ?>) reader(path).get(url)).get("address").toString();
+        PageAddress pageAddress = new PageAddress(address);
+
+
+        return pageAddress;
     }
 
 

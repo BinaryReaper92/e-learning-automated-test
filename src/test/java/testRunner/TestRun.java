@@ -8,10 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions
         (
                 features = "src\\test\\java\\Features\\",
-                glue = {"stepDefinitions","utilities"},
+                glue = {"stepDefinitions2","utilities"},
+                tags = "@ErrorsTest",
                 dryRun = false,
                 plugin = {"pretty","html:Reports/Report.html","json:Reports/Report.json","junit:Reports/Report.xml"}
+
         )
 public class TestRun {
-
 }
