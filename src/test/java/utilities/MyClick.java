@@ -1,13 +1,14 @@
 package utilities;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.*;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class MyClick{
 
-    public static WebDriver driver;
-
-    private static boolean standardClick( WebElement element) throws Exception {
+    private static boolean standardClick( SelenideElement element) throws Exception {
         try {
             if (element.isEnabled() && element.isDisplayed()) {
                 MyTrace.trace( element, "Clicking on element with standard click" );
@@ -31,11 +32,11 @@ public class MyClick{
         return true;
     }
 
-    private static boolean javaScriptClick( WebElement element) throws Exception {
+    private static boolean javaScriptClick( SelenideElement element) throws Exception {
         try {
             if (element.isEnabled() && element.isDisplayed()) {
                 MyTrace.trace( element, "Clicking on element with standard click" );
-                JavascriptExecutor js = (JavascriptExecutor) driver;
+                JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
                 js.executeScript("arguments[0].click();", element);
             } else {
                 MyTrace.trace( element, "Unable to click on element" );
@@ -57,9 +58,11 @@ public class MyClick{
         return true;
     }
 
-    public static void baseClick( WebElement element ) throws Exception {
+    public static void baseClick2( SelenideElement element ) throws Exception {
         if( !standardClick( element ) )
             javaScriptClick( element );
+    }
+    public static void baseClick( WebElement element ) throws Exception {
     }
 
 }

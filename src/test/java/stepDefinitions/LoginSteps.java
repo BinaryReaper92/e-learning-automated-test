@@ -8,7 +8,7 @@ import testObjects.LoginPageTest;
 import utilities.JSONReader;
 import utilities.Log4j;
 import utilities.TestSetup;
-import static com.codeborne.selenide.Selenide.*;
+
 import static com.codeborne.selenide.Condition.*;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class LoginSteps{
     public void admin_opens_url(String url) {
         String sWebsite = reader.getAddress(url).getAddress();
         Log4j.info("Opening the website:" + sWebsite);
-        open(sWebsite);
+        driver.navigate().to(sWebsite);
     }
     /*
     @Given("Admin opens URL {string}")

@@ -1,147 +1,148 @@
 package utilities;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.google.common.base.Optional;
-import org.openqa.selenium.*;
+import com.codeborne.selenide.ex.ElementNotFound;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
-
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class ElementFinder {
 
-    public static WebDriver driver;
 
-    public static WebElement myFindElementById(WebElement parentElement, String locator){
+    public static SelenideElement myFindElementById(String locator){
         try {
-            return parentElement.findElement(By.id(locator));
-        } catch (NoSuchElementException e) {
-            MyTrace.trace( parentElement,"Unable to find element " + locator + " in", e );
-            //System.out.println("Unable to find element " + e.getStackTrace());
-        }
-        return null;
-    }
-
-    public static WebElement myFindElementById(String locator){
-        try {
-            return driver.findElement(By.id(locator));
-        } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
+            return $(getWebDriver().findElement(By.id(locator)));
+        } catch (ElementNotFound e) {
+           // MyTrace.trace($(By.id(locator)), "Unable to find element");
+            System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
     }
 
-    public static WebElement myFindElementByCSS(WebElement parentElement, String locator){
+    public static SelenideElement myFindElementByCSS(String locator){
         try {
-            return parentElement.findElement(By.cssSelector(locator));
+            return $(getWebDriver().findElement(By.cssSelector(locator)));
         } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
+            MyTrace.trace($(By.cssSelector(locator)), "Unable to find element", e);
+            System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
     }
 
-    public static WebElement myFindElementByCSS(String locator){
+    public static SelenideElement myFindElementByXpath(String locator){
         try {
-            return driver.findElement(By.cssSelector(locator));
+            return $(getWebDriver().findElement(By.xpath(locator)));
         } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
+            MyTrace.trace($(By.xpath(locator)), "Unable to find element", e);
+            System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
     }
 
-    public static SelenideElement myFindElementByXpath(WebElement parentElement, String locator){
+    public static SelenideElement myFindElementByText(String locator){
         try {
-            return  $x(locator);
+            return $(getWebDriver().findElement(By.xpath(".//*[text()='" + locator + "'] ")));
         } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
-        }
-        return null;
-    }
-    public static WebElement myFindElementByXpath(String locator){
-        try {
-            return driver.findElement(By.xpath(locator));
-        } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
+            MyTrace.trace($(By.xpath(".//*[text()='" + locator + "'] ")), "Unable to find element", e);
+            System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
     }
 
-    public static WebElement myFindElementByText(WebElement parentElement, String locator){
+    public static SelenideElement myFindElementByLinkText(String locator){
         try {
-            return parentElement.findElement(By.xpath(".//*[text()='locator'] "));
+            return $(getWebDriver().findElement(By.linkText(locator)));
         } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
+            MyTrace.trace($(By.linkText(locator)), "Unable to find element" + locator + "in", e);
+            System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
     }
-    public static WebElement myFindElementByText(String locator){
-        try {
-            return  driver.findElement(By.xpath(".//*[text()='locator'] "));
-        } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
-        }
-        return null;
-    }
-
-    public static WebElement myFindElementByLinkText(WebElement parentElement, String locator){
-        try {
-            return parentElement.findElement(By.linkText(locator));
-        } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
-        }
-        return null;
-    }
-    public static WebElement myFindElementByLinkText(String locator){
-        try {
-            return driver.findElement(By.linkText(locator));
-        } catch (NoSuchElementException e) {
-            System.out.println("Unable to find element " + e.getStackTrace());
-        }
-        return null;
-    }
-
-    public static WebElement myFindElement(WebElement parentElement, String locator){
-       WebElement element;
-        element = myFindElementByXpath(     parentElement, locator );
+/*
+    public static SelenideElement myFindElement(String locator){
+       SelenideElement element;
+        element = myFindElementByXpath(locator);
         if( element == null )
-           element = myFindElementById(        parentElement, locator );
+           element = myFindElementById(locator);
        if( element == null )
-           element = myFindElementByLinkText(  parentElement, locator );
+           element = myFindElementByLinkText(locator);
        if( element == null )
-           element = myFindElementByText(      parentElement, locator );
+           element = myFindElementByText(locator);
        if( element == null )
-           element = myFindElementByLinkText(  parentElement, locator );
+           element = myFindElementByLinkText(locator);
        if( element == null )
-           element = myFindElementByCSS(       parentElement, locator );
+           element = myFindElementByCSS(locator);
 
        if( element == null )
-           MyTrace.trace( parentElement, "Unable to find element " + locator + " in" );
+           MyTrace.trace($By.element(locator)"Unable to find element " + locator + " in" e);
+           System.out.println("Unable to find element " + e.getm());
 
        return element;
-    }
+    }*/
 
-    public static WebElement myFindElement(String locator){
-        WebElement element;
-        element = myFindElementById(        locator );
-        if( element == null )
-        element = myFindElementByXpath(         locator );
-        if( element == null )
-            /*
-            element = myFindElementByLinkText(  locator );
-        if( element == null )
-            element = myFindElementByText(      locator );
-        if( element == null )
-            element = myFindElementByLinkText(  locator );
-        if( element == null )
-            element = myFindElementByCSS(       locator );
-            */
-        if( element == null )
-            MyTrace.trace( null, "Unable to find element " + locator + " in" );
+    public static SelenideElement myFindElement(String locator){
+        SelenideElement element = null;
+        element = myFindElementById(locator);
 
+        if (element == null) {
+            element = myFindElementByXpath(locator);
+        }
+        if (element == null) {
+            element = myFindElementByLinkText(locator);
+        }
+        if (element == null) {
+            element = myFindElementByText(locator);
+        }
+        if (element == null) {
+            element = myFindElementByLinkText(locator);
+        }
+        if (element == null) {
+            element = myFindElementByCSS(locator);
+        }
+        if (element == null) {
+            MyTrace.trace(null, "Unable to find element " + locator);
+            System.out.println("Unable to find element");
+        }
         return element;
     }
 
+/*
+    public static SelenideElement myFindElement2(String locator) {
+        SelenideElement element = null;
+        if (locator != null) {
+            try {
+                element = $(getWebDriver().findElement(By.id(locator)));
+            } catch (NoSuchElementException e) {
+                // do nothing, element not found with xpath
+            }
+        }
+
+        if (element == null) {
+            try {
+                element = $(getWebDriver().findElement(By.xpath(locator)));
+            } catch (NoSuchElementException e) {
+                // do nothing, element not found with id
+            }
+        }
+
+        if (element == null) {
+            try {
+                element = $(By.cssSelector(locator));
+            } catch (NoSuchElementException e) {
+                // do nothing, element not found with css selector
+            }
+        }
+
+        if (element == null) {
+            MyTrace.trace(null, "Unable to find element " + locator + " in");
+            System.out.println("Unable to find element");
+        }
+
+        return element;
+    }*/
 }

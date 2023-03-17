@@ -1,15 +1,16 @@
 package utilities;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.*;
-import org.openqa.selenium.JavascriptExecutor;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class MySendKeys {
 
-    public static WebDriver driver;
 
 
-    private static boolean standardSendKeys(WebElement element, String text) throws Exception {
+    private static boolean standardSendKeys(SelenideElement element, String text) throws Exception {
 
         try {
             if (element.isEnabled() && element.isDisplayed()) {
@@ -35,8 +36,8 @@ public class MySendKeys {
         return true;
     }
 
-    public static boolean javaScriptSendKeys (WebElement element, String text) throws Exception {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public static boolean javaScriptSendKeys (SelenideElement element, String text) throws Exception {
+        JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
         try {
             if (element.isEnabled() && element.isDisplayed()) {
                 MyTrace.trace( element, "Send text to element with using java script sendkeys" );
@@ -62,15 +63,18 @@ public class MySendKeys {
     }
 
     public void javas (WebElement element, String text){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
         js.executeScript("arguments[0].value=arguments[1]", element, text);
     }
 
-    public static void mySendKeys( WebElement element, String text) throws Exception {
+    public static void mySendKeys2( SelenideElement element, String text) throws Exception {
         if( !standardSendKeys( element, text ) )
            javaScriptSendKeys( element, text);
     }
 
+    public static void mySendKeys( WebElement element, String text) throws Exception {
+
+    }
 
 
 

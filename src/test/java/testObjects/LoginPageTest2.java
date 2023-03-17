@@ -5,6 +5,8 @@ import pageObjects.LoginPage;
 import pageObjects.LoginPage2;
 import utilities.BasePageTest2;
 import utilities.Log4j;
+import utilities.MyClick;
+import utilities.MySendKeys;
 
 import java.io.IOException;
 
@@ -19,7 +21,8 @@ public class LoginPageTest2 extends BasePageTest2 {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getEmailInput().shouldBe(visible);
-        loginPage.getEmailInput().sendKeys(username);
+       // loginPage.getEmailInput().sendKeys(username);
+        MySendKeys.mySendKeys2(loginPage.getEmailInput(),username);
 
     }
 
@@ -27,7 +30,8 @@ public class LoginPageTest2 extends BasePageTest2 {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getPasswordInput().shouldBe(visible);
-        loginPage.getPasswordInput().sendKeys(password);
+       // loginPage.getPasswordInput().sendKeys(password);
+        MySendKeys.mySendKeys2(loginPage.getPasswordInput(),password);
 
 
     }
@@ -37,7 +41,8 @@ public class LoginPageTest2 extends BasePageTest2 {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getLoginButton().shouldBe(visible);
-        loginPage.getLoginButton().click();
+       // loginPage.getLoginButton().click();
+        MyClick.baseClick2(loginPage.getLoginButton());
 
 
     }

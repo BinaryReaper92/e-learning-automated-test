@@ -20,9 +20,9 @@ public class TestSetup {
         Configuration.timeout = 4000;
         System.setProperty("selenide.timeout", "4000");
     }
-/*
-    public static WebDriver driver;
 
+    public static WebDriver driver;
+/*
     @Before
     public void setup() {
 
@@ -40,8 +40,8 @@ public class TestSetup {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }*/
-
+    }
+*/
     @After
     public void tearDown() {
 

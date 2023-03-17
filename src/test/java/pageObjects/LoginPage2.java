@@ -2,23 +2,31 @@ package pageObjects;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.WebElement;
+import utilities.ElementFinder;
+import utilities.ElementFinder2;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.driver;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage2 {
 
+    /*public SelenideElement getEmailInput() {
+        return $x("(//form//input)[1]");
+    }*/
 
     public SelenideElement getEmailInput() {
-        return $x("(//form//input)[1]");
-
+        return ElementFinder2.myFindElement2("(//form//input)[1]");
     }
 
     public SelenideElement getPasswordInput() {
-        return $x("(//form//input)[2]");
+        return ElementFinder.myFindElement("(//form//input)[2]");
     }
 
     public SelenideElement getLoginButton() {
-        return $x("//button[contains(@class,'login-form__button-container__button')]");
+        return ElementFinder.myFindElement("//button[contains(@class,'login-form__button-container__button')]");
     }
 
     public SelenideElement getEmailEmptyError(){

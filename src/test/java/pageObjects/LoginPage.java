@@ -7,7 +7,7 @@ import utilities.ElementFinder;
 
 public class LoginPage {
 
-    @FindBy(xpath="/html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/input[1]")
+    @FindBy(xpath="(//form//input)[1]")
     @CacheLookup
     //public static WebElement textEmail = ElementFinder.myFindElement( "this");
     public static WebElement textEmail;

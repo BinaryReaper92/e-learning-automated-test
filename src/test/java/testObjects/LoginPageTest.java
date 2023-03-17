@@ -4,10 +4,7 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pageObjects.LoginPage;
 import utilities.*;
@@ -27,7 +24,7 @@ public class LoginPageTest extends BasePageTest {
     MyClick click = new MyClick();*/
 
     public void setUserName(String username) throws Exception {
-
+        //WebElement element = ElementFinder.myFindElement(driver,"(//form//input)[1]");
         LoginPage.textEmail.clear();
         waitForElementToAppear(LoginPage.textEmail);
         MySendKeys.mySendKeys(LoginPage.textEmail, username);
