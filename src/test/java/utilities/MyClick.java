@@ -35,7 +35,7 @@ public class MyClick{
     private static boolean javaScriptClick( SelenideElement element) throws Exception {
         try {
             if (element.isEnabled() && element.isDisplayed()) {
-                MyTrace.trace( element, "Clicking on element with standard click" );
+                MyTrace.trace( element, "Clicking on element with javascript click" );
                 JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
                 js.executeScript("arguments[0].click();", element);
             } else {
@@ -58,11 +58,10 @@ public class MyClick{
         return true;
     }
 
-    public static void baseClick2( SelenideElement element ) throws Exception {
+    public static void baseClick( SelenideElement element ) throws Exception {
         if( !standardClick( element ) )
             javaScriptClick( element );
     }
-    public static void baseClick( WebElement element ) throws Exception {
-    }
+
 
 }

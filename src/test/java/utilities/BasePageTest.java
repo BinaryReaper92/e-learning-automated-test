@@ -46,9 +46,9 @@ public class BasePageTest {
         }
     }
 
-    private static Boolean isReady(WebDriver driver) {
+    public static Boolean isReady(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        return js.executeScript("return document.readyState").toString().equals("complete");
+        return js.executeScript("return document.readyState").equals("complete");
     }
 
 

@@ -27,7 +27,7 @@ public class LoginPageTest extends BasePageTest {
         //WebElement element = ElementFinder.myFindElement(driver,"(//form//input)[1]");
         LoginPage.textEmail.clear();
         waitForElementToAppear(LoginPage.textEmail);
-        MySendKeys.mySendKeys(LoginPage.textEmail, username);
+        //MySendKeys.mySendKeys(LoginPage.textEmail, username);
         /*JavascriptExecutor jse = ((JavascriptExecutor)driver);
         jse.executeScript("arguments[0].value=arguments[1]", LoginPage.textEmail, username);
         LoginPage.textEmail.sendKeys(Keys.TAB);*/
@@ -36,7 +36,7 @@ public class LoginPageTest extends BasePageTest {
     public void setPassword(String password) throws Exception {
 
         LoginPage.textPassword.clear();
-        MySendKeys.mySendKeys(LoginPage.textPassword, password);
+ //       MySendKeys.mySendKeys(LoginPage.textPassword, password);
 
 
     }
@@ -44,7 +44,7 @@ public class LoginPageTest extends BasePageTest {
     public void clickLogin() throws Exception {
 
 
-        MyClick.baseClick( LoginPage.buttonLogin );
+ //       MyClick.baseClick( LoginPage.buttonLogin );
         //Thread.sleep(5000);
 
 
@@ -87,10 +87,10 @@ public class LoginPageTest extends BasePageTest {
         }
     }*/
     public void clickOnEmailField() throws Exception {
-        MyClick.baseClick( LoginPage.textEmail);
+  //      MyClick.baseClick( LoginPage.textEmail);
     }
     public void clickOnPasswordField() throws Exception {
-        MyClick.baseClick( LoginPage.textPassword);
+ //       MyClick.baseClick( LoginPage.textPassword);
     }
 
     public void emailErrorText(String error) throws IOException {
@@ -132,11 +132,11 @@ public class LoginPageTest extends BasePageTest {
     }
 
     public void clickEye() throws Exception {
-        MyClick.baseClick( LoginPage.buttonEye );
+  //      MyClick.baseClick( LoginPage.buttonEye );
     }
 
     public void clickForgotPassword() throws Exception {
-        MyClick.baseClick(LoginPage.buttonForgotPassword);
+ //       MyClick.baseClick(LoginPage.buttonForgotPassword);
 
     }
 }

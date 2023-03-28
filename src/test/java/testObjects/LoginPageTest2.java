@@ -1,5 +1,7 @@
 package testObjects;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import pageObjects.LoginPage;
 import pageObjects.LoginPage2;
@@ -21,17 +23,14 @@ public class LoginPageTest2 extends BasePageTest2 {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getEmailInput().shouldBe(visible);
-       // loginPage.getEmailInput().sendKeys(username);
-        MySendKeys.mySendKeys2(loginPage.getEmailInput(),username);
-
+        MySendKeys.mySendKeys(loginPage.getEmailInput(), username);
     }
 
     public static void setPassword(String password) throws Exception {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getPasswordInput().shouldBe(visible);
-       // loginPage.getPasswordInput().sendKeys(password);
-        MySendKeys.mySendKeys2(loginPage.getPasswordInput(),password);
+        MySendKeys.mySendKeys(loginPage.getPasswordInput(),password);
 
 
     }
@@ -41,8 +40,7 @@ public class LoginPageTest2 extends BasePageTest2 {
 
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getLoginButton().shouldBe(visible);
-       // loginPage.getLoginButton().click();
-        MyClick.baseClick2(loginPage.getLoginButton());
+        MyClick.baseClick(loginPage.getLoginButton());
 
 
     }

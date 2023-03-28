@@ -9,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+
 public class TestSetup {
 
     @Before
@@ -16,6 +18,7 @@ public class TestSetup {
 
         Log4j.log4jSetup();
         Log4j.startLog("Test is starting.");
+        Configuration.holdBrowserOpen=true;
 
         Configuration.timeout = 4000;
         System.setProperty("selenide.timeout", "4000");
@@ -42,6 +45,7 @@ public class TestSetup {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 */
+
     @After
     public void tearDown() {
 
