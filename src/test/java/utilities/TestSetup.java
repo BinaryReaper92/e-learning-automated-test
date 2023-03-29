@@ -1,11 +1,17 @@
 package utilities;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideConfig;
+import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,10 +24,14 @@ public class TestSetup {
 
         Log4j.log4jSetup();
         Log4j.startLog("Test is starting.");
-        Configuration.holdBrowserOpen=true;
 
-        Configuration.timeout = 4000;
-        System.setProperty("selenide.timeout", "4000");
+        System.setProperty("selenide.browser", "chrome");
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "maximize";
+        Configuration.headless = false;
+        Configuration.timeout = 15000;
+        System.setProperty("selenide.timeout", "15000");
+ //     Configuration.holdBrowserOpen=true;
     }
 
     public static WebDriver driver;
@@ -50,5 +60,6 @@ public class TestSetup {
     public void tearDown() {
 
         Log4j.endLog("Test is ending.");
+        closeWebDriver();
     }
 }

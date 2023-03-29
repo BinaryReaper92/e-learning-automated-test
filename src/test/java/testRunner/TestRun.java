@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         (
                 features = "src\\test\\java\\Features\\",
                 glue = {"stepDefinitions2","utilities"},
-                tags = "@SmokeTest",
+                tags = "@ErrorsTest",
                 dryRun = false,
                 plugin = {"pretty","html:Reports/Report.html","json:Reports/Report.json","junit:Reports/Report.xml"}
 

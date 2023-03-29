@@ -37,7 +37,7 @@ public class LoginPageTest2 extends BasePageTest2 {
 
     public static void clickLogin() throws Exception {
 
-
+        Log4j.info("Click on Login button");
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getLoginButton().shouldBe(visible);
         MyClick.baseClick(loginPage.getLoginButton());
@@ -47,22 +47,22 @@ public class LoginPageTest2 extends BasePageTest2 {
 
     public static void clickEmail() throws Exception {
 
-
+        Log4j.info("Click in the Email field");
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getEmailInput().shouldBe(visible);
         loginPage.getLoginButton().shouldBe(visible);
-        loginPage.getEmailInput().click();
+        MyClick.baseClick(loginPage.getEmailInput());
 
 
     }
 
     public static void clickPassword() throws Exception {
 
-
+        Log4j.info("Click in the Password field");
         LoginPage2 loginPage = page(LoginPage2.class);
         loginPage.getLoginButton().shouldBe(visible);
         loginPage.getLoginButton().shouldBe(visible);
-        loginPage.getPasswordInput().click();
+        MyClick.baseClick(loginPage.getPasswordInput());
 
 
     }

@@ -8,9 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage2 {
 
-    /*public SelenideElement getEmailInput() {
-        return $x("(//form//input)[1]");
-    }*/
+
 
     public SelenideElement getEmailInput() {
         return ElementFinder.myFindElement("(//form//input)[1]");
@@ -22,6 +20,7 @@ public class LoginPage2 {
     }
 
     public SelenideElement getLoginButton() {
+ //       return ElementFinder.myFindElement("div.login-page div.h-100.row.g-0 div.login-page__login-container-col.col-lg-4.col-6 div.login-container.login-page__login-container div.mt-3:nth-child(2) form.login-form div.login-form__button-container:nth-child(4) > button.button-wrapper.btn.login-form__button-container__button.btn-block.button-wrapper--medium");
         return ElementFinder.myFindElement("//button[contains(@class,'login-form__button-container__button')]");
     }
 
