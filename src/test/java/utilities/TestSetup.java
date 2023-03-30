@@ -27,11 +27,13 @@ public class TestSetup {
 
         System.setProperty("selenide.browser", "chrome");
         Configuration.browser = "chrome";
-        Configuration.browserSize = "maximize";
+  //      System.setProperty("selenide.browser", "firefox");
+  //      Configuration.browser = "firefox";
+ //       Configuration.browserSize = "maximize";
         Configuration.headless = false;
         Configuration.timeout = 15000;
         System.setProperty("selenide.timeout", "15000");
- //     Configuration.holdBrowserOpen=true;
+      Configuration.holdBrowserOpen=true;
     }
 
     public static WebDriver driver;

@@ -59,7 +59,7 @@ public class MyClick{
     }
 
     public static void baseClick( SelenideElement element ) throws Exception {
-        if( !standardClick( element ) )
+//        if( !standardClick( element ) )
             javaScriptClick( element );
     }
 

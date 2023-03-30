@@ -68,11 +68,33 @@ public class MySendKeys {
     }
 
     public static boolean jquerySendKeys(SelenideElement element, String text) {
+        JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
 
         try {if (element.isEnabled() && element.isDisplayed()) {
 
-            String jqueryScript = String.format("$('#%s').val('%s');", element, text);
+           // executeJavaScript("console.log("+String.format("$('#%s').val('%s');", element, text)+")");
+            //js.executeScript("console.log(arguments[0])", "console.log("+String.format("$('#%s').val('%s');", element, text));
+            String jqueryScript = String.format("$('#%s').value = '%s';", element.getAttribute("id"), text);
+
+            String jsCode = "const valueSetter = Object.getOwnPropertyDescriptor(document.getElementById('{elementid}'), 'value').set;\n" +
+                    "const prototype = Object.getPrototypeOf(document.getElementById('{elementid}'));\n" +
+                    "const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;\n" +
+                    "if (valueSetter && valueSetter !== prototypeValueSetter) {\n" +
+                    "    prototypeValueSetter.call(document.getElementById('{elementid}'), '{value}');\n" +
+                    "} else {\n" +
+                    "    valueSetter.call(document.getElementById('{elementid}'), '{value}');\n" +
+                    "}\n" +
+                    "document.getElementById('{elementid}').dispatchEvent(new Event('input', { bubbles: true })); \n"+
+                    "document.getElementById('{elementid}').value = '{value}'; \n"+
+                    "document.getElementById('{elementid}').dispatchEvent(new Event('input', { bubbles: true })); \n";
+
+            String jsCodeString =  jsCode.replace("{elementid}", element.getAttribute("id")).replace("{value}", text);
+            //MyTrace.trace( element, jsCodeString);
+            js.executeScript(jsCodeString);
+
+            MyTrace.trace( element, jqueryScript);
             executeJavaScript(jqueryScript);
+            js.executeScript("$('#arguments[0]').value= 'arguments[1]';", element.getAttribute("id"), text);
             MyTrace.trace(element, "Send text to element with using jquery sendkeys");
         } else {
             MyTrace.trace( element, "Unable to send text to element" );
@@ -94,8 +116,8 @@ public class MySendKeys {
     }
 
     public static void mySendKeys( SelenideElement element, String text) throws Exception {
-        if( !standardSendKeys( element, text ) )
-                 javaScriptSendKeys( element, text);
+//       if( !standardSendKeys( element, text ) )
+//                 javaScriptSendKeys( element, text);
                  jquerySendKeys(element, text);
 
     }

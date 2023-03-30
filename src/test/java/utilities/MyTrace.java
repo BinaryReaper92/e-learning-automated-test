@@ -4,11 +4,14 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+
 public class MyTrace {
 
     public static void trace(String sMessage)
     {
-        System.out.println( sMessage );
+        System.out.println( "[MYTRACE]" + sMessage );
+        executeJavaScript("console.log(`"+sMessage+"`)");
     }
 
     public static void trace(SelenideElement element, String sMessage )

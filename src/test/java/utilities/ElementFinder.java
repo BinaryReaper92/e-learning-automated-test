@@ -14,7 +14,7 @@ public class ElementFinder {
         try {
             return $(getWebDriver().findElement(By.id(locator)));
         } catch (NoSuchElementException e) {
-            MyTrace.trace("Unable to find element");
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
@@ -24,7 +24,7 @@ public class ElementFinder {
         try {
             return $(getWebDriver().findElement(By.cssSelector(locator)));
         } catch (NoSuchElementException e) {
-            MyTrace.trace("Unable to find element");
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
@@ -34,7 +34,7 @@ public class ElementFinder {
         try {
             return $(getWebDriver().findElement(By.xpath(locator)));
         } catch (NoSuchElementException e) {
-            MyTrace.trace("Unable to find element");
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
@@ -44,7 +44,7 @@ public class ElementFinder {
         try {
             return $(getWebDriver().findElement(By.xpath(".//*[text()='" + locator + "'] ")));
         } catch (NoSuchElementException e) {
-            MyTrace.trace("Unable to find element");
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
@@ -54,7 +54,7 @@ public class ElementFinder {
         try {
             return $(getWebDriver().findElement(By.linkText(locator)));
         } catch (NoSuchElementException e) {
-            MyTrace.trace("Unable to find element");
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             System.out.println("Unable to find element " + e.getMessage());
         }
         return null;
@@ -77,7 +77,7 @@ public class ElementFinder {
             element = myFindElementByCSS(locator);
         }
         if (element == null) {
-            MyTrace.trace(null, "Unable to find element " + locator);
+            MyTrace.trace("Unable to find element: '"+locator+"'");
             throw new NoSuchElementException("Tag not found: '"+locator+"'");
         }
         return element;
